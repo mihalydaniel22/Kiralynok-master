@@ -10,8 +10,6 @@ namespace Kiralynok
     {
         private char[,] T = new char[8, 8];
         private char UresCella;
-        private bool UresOszlopokSzama;
-        private bool UresSorokSzama;
 
         public Tabla(char ch)
         {
@@ -66,21 +64,29 @@ namespace Kiralynok
 
         public bool UresOszlop(int oszlop)
         {
-            int db1 = 0;
-            for (int i = 0; i < 8 ; i++)
+            bool uresOszlop = true;
+            for (int sor = 0; sor < T.GetLength(0); sor++)
             {
-                for (int j = 0; j < 8 ; j++)
+                if (T[sor,oszlop]=='K')
                 {
-                    while (db1 < )
-                    {
-
-                    }
-                    if (db1 <= )
-                    {
-
-                    }
+                    uresOszlop = false;
                 }
             }
+            return uresOszlop;
+        }
+        public int UresOszlopokSzama()
+        {
+            int db = 0;
+            for (int i = 0; i < T.GetLength(0); i++)
+            {
+                if (UresOszlop(i))
+                {
+                    db++;
+                }
+            }
+            return db;
+
+
         }
         public bool UresSor(int sor)
         {
@@ -99,6 +105,7 @@ namespace Kiralynok
             t.Elhelyez(8);
             Console.WriteLine();
             t.Megjelenit();
+            Console.WriteLine("Üres oszlopok száma: " + t.UresOszlopokSzama());
             Console.ReadKey();
         }
     }
